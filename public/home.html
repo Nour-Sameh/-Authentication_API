@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>welcome to your home page!</h1>
+    <div id="ug"></div>
+    <div id="nav">
+        <a href="/login">login</a>
+        <a href="/register">register</a>
+    </div>
+    <script>
+        async function APIfun(){
+            const data=await fetch("/check-session");
+            const info =await data.json();
+            if(info.username){
+                const hi=document.getElementById('ug');
+                hi.textContent=`HELLO, ${info.username}`;
+                const links =document.getElementById('nav');
+                links.style.display='none'
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded",APIfun)
+
+    </script>
+</body>
+</html>
